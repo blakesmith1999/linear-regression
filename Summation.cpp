@@ -136,7 +136,7 @@ void Summation::find_x_av() {
         sum += element;
     }
     x_av_ = sum / n;
-    std::cout << x_av_ << std::endl;
+    //std::cout << x_av_ << std::endl;
 }
 
 void Summation::find_lny_av() {
@@ -146,41 +146,40 @@ void Summation::find_lny_av() {
         if (input_y.at(i) != 0) {
             double element = log(input_y.at(i));
         }
-        std::cout << element << std::endl;
         sum += element;
     }
     lny_av_ = sum / n;
-    std::cout << lny_av_ << std::endl;
+    //std::cout << lny_av_ << std::endl;
 }
 
 void Summation::Sxx() {
     Sxx_ = sum_sqr_ - (n * pow(x_av_, 2));
-    std::cout << Sxx_ << std::endl;
+    //std::cout << Sxx_ << std::endl;
 }
 
 void Summation::Sxy() {
     Sxy_ = sum_x_lny_ - (n * x_av_ * lny_av_);
-    std::cout << Sxy_ << std::endl;
+    //std::cout << Sxy_ << std::endl;
 }
 
 void Summation::Syy() {
     Syy_ = sum_lny_sqr_ - (n * pow(lny_av_, 2));
-    std::cout << Syy_ << std::endl;
+    //std::cout << Syy_ << std::endl;
 }
 
 void Summation::find_r() {
     r_ = Sxy_ / (pow(Sxx_, 0.5) * pow(Syy_, 0.5));
-    std::cout << r_ << std::endl;
+    //std::cout << r_ << std::endl;
 }
 
 void Summation::find_B() {
     B_ = exp(Sxy_ / Sxx_);
-    std::cout << B_ << std::endl;
+    //std::cout << B_ << std::endl;
 }
 
 void Summation::find_A() {
     A_ = exp(lny_av_ - (x_av_ * exp(B_)));
-    std::cout << A_ << std::endl;
+    //std::cout << A_ << std::endl;
 }
 
 void Summation::initialize_variables() {
@@ -210,7 +209,7 @@ void Summation::regression_prediction() {
     std::cout << "\nEnter your x-value: ";
     std::cin >> x_value;
     std::cout << "The predicted linear y-value is: " << a0 + (a1 * x_value) << std::endl;
-    std::cout << "The predicted exponential y-value is: " << A_ * (pow(B_, x_value)) << std::endl;
+    //std::cout << "The predicted exponential y-value is: " << A_ * (pow(B_, x_value)) << std::endl;
 }
 
 void Summation::print_regression() {
@@ -247,8 +246,8 @@ void Summation::print_regression() {
     //initialize all the variables based on file input to x and y
 
     std::cout << "The linear regression of this dataset is: fit(y)= " << a0 << " + " << a1 << "x" << std::endl;
-    std::cout << "The exponential regression of this dataset is: fit(y)= " << A_ << "(" << B_ << ")^x" << std::endl;
-    std::cout << "The correlation coefficient of this dataset is: " << r_ << std::endl;
+    //std::cout << "The exponential regression of this dataset is: fit(y)= " << A_ << "(" << B_ << ")^x" << std::endl;
+    //std::cout << "The correlation coefficient of this dataset is: " << r_ << std::endl;
     char cont;
     do {
         std::cout << "Would you like me to predict a y-value for your x-value? (y/n): ";

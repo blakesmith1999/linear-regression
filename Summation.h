@@ -1,6 +1,9 @@
 #ifndef LINEARREGRESSION_H
 #define LINEARREGRESSION_H
 
+#include <vector>
+
+
 class Summation
 {
 public:
