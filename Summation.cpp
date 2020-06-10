@@ -90,17 +90,18 @@ void Summation::sqr_of_sum() {
 }
 
 void Summation::sum_x_lny() {
+    //Finds the value given by the sum of the x values multiplied by the ln of the y values
     int sum = 0;
     for (int i = 0; i < input_x.size(); i++) {
         double element1 = input_x.at(i);
         double element2 = 0;
         if (input_y.at(i) != 0) {
+            //if y=0, do nothing
             element2 = log(input_y.at(i));
         }
         sum += (element1 * element2);
     }
     sum_x_lny_ = sum;
-    std::cout << sum_x_lny_ << std::endl;
 }
 
 void Summation::sum_lny_sqr() {
@@ -111,7 +112,6 @@ void Summation::sum_lny_sqr() {
         sum += element;
     }
     sum_lny_sqr_ = sum;
-    std::cout << sum_lny_sqr_ << std::endl;
 }
 
 void Summation::find_n() {
@@ -130,13 +130,13 @@ void Summation::find_a1() {
 }
 
 void Summation::find_x_av() {
+    //Finds the average x value
     int sum = 0;
     for (int i = 0; i < input_x.size(); i++) {
         double element = input_x.at(i);
         sum += element;
     }
     x_av_ = sum / n;
-    //std::cout << x_av_ << std::endl;
 }
 
 void Summation::find_lny_av() {
@@ -145,41 +145,41 @@ void Summation::find_lny_av() {
         double element = 0;
         if (input_y.at(i) != 0) {
             double element = log(input_y.at(i));
+            sum += element;
         }
-        sum += element;
     }
     lny_av_ = sum / n;
-    //std::cout << lny_av_ << std::endl;
+    std::cout << "average ln(y)" <<lny_av_ << std::endl;
 }
 
 void Summation::Sxx() {
     Sxx_ = sum_sqr_ - (n * pow(x_av_, 2));
-    //std::cout << Sxx_ << std::endl;
+    std::cout <<"Sxx_"<< Sxx_ << std::endl;
 }
 
 void Summation::Sxy() {
     Sxy_ = sum_x_lny_ - (n * x_av_ * lny_av_);
-    //std::cout << Sxy_ << std::endl;
+    std::cout <<"Sxy_"<< Sxy_ << std::endl;
 }
 
 void Summation::Syy() {
     Syy_ = sum_lny_sqr_ - (n * pow(lny_av_, 2));
-    //std::cout << Syy_ << std::endl;
+    std::cout<<"Syy_" << Syy_ << std::endl;
 }
 
 void Summation::find_r() {
     r_ = Sxy_ / (pow(Sxx_, 0.5) * pow(Syy_, 0.5));
-    //std::cout << r_ << std::endl;
+    std::cout<<"r_" << r_ << std::endl;
 }
 
 void Summation::find_B() {
     B_ = exp(Sxy_ / Sxx_);
-    //std::cout << B_ << std::endl;
+    std::cout <<"B_"<< B_ << std::endl;
 }
 
 void Summation::find_A() {
     A_ = exp(lny_av_ - (x_av_ * exp(B_)));
-    //std::cout << A_ << std::endl;
+    std::cout<<"A_" << A_ << std::endl;
 }
 
 void Summation::initialize_variables() {
@@ -199,6 +199,7 @@ void Summation::initialize_variables() {
     Sxx();
     Sxy();
     Syy();
+    find_r();
     find_A();
     find_B();
 }
@@ -209,7 +210,7 @@ void Summation::regression_prediction() {
     std::cout << "\nEnter your x-value: ";
     std::cin >> x_value;
     std::cout << "The predicted linear y-value is: " << a0 + (a1 * x_value) << std::endl;
-    //std::cout << "The predicted exponential y-value is: " << A_ * (pow(B_, x_value)) << std::endl;
+    std::cout << "The predicted exponential y-value is: " << A_ * (pow(B_, x_value)) << std::endl;
 }
 
 void Summation::print_regression() {
@@ -246,8 +247,8 @@ void Summation::print_regression() {
     //initialize all the variables based on file input to x and y
 
     std::cout << "The linear regression of this dataset is: fit(y)= " << a0 << " + " << a1 << "x" << std::endl;
-    //std::cout << "The exponential regression of this dataset is: fit(y)= " << A_ << "(" << B_ << ")^x" << std::endl;
-    //std::cout << "The correlation coefficient of this dataset is: " << r_ << std::endl;
+    std::cout << "The exponential regression of this dataset is: fit(y)= " << A_ << "(" << B_ << ")^x" << std::endl;
+    std::cout << "The correlation coefficient of this dataset is: " << r_ << std::endl;
     char cont;
     do {
         std::cout << "Would you like me to predict a y-value for your x-value? (y/n): ";
