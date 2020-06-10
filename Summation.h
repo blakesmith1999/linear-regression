@@ -1,6 +1,5 @@
-#pragma once
-#include <iostream>
-#include <vector>
+#ifndef LINEARREGRESSION_H
+#define LINEARREGRESSION_H
 
 class Summation
 {
@@ -52,3 +51,5 @@ private:
     double B_;
     double A_;
 };
+
+#endif

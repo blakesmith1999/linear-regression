@@ -1,9 +1,10 @@
+#include "Summation.h"
 #include <iostream>
 #include <vector>
 #include <cmath>
 #include <string>
 #include <fstream>
-#include "Summation.h"
+
 
 
 
